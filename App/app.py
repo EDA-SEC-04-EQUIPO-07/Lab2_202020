@@ -155,7 +155,7 @@ def main():
                 lista_casting = loadCSVFile("Data/MoviesCastingRaw-small.csv") #llamar funcion cargar datos
                 lista_details = loadCSVFile("Data/SmallMoviesDetailsCleaned.csv")
                 print("Datos cargados en lista casting, ",lista_casting['size']," elementos cargados")
-                print("Datos cargados en lista details, ",lista_details['size']," elementos cargados")0
+                print("Datos cargados en lista details, ",lista_details['size']," elementos cargados")
             elif int(inputs[0])==2: #opcion 2
                 if lista_details==None or lista_details['size']==0: #obtener la longitud de la lista
                     print("La lista details esta vacía")  
