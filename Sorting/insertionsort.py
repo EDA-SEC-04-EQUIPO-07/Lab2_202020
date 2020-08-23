@@ -23,7 +23,6 @@
 import config as cf
 from ADT import list as lt
 
-#MARTIN
 def insertionSort (lst, lessfunction, criteria): 
     size =  lt.size(lst) 
     pos1 = 1
@@ -34,12 +33,4 @@ def insertionSort (lst, lessfunction, criteria):
             pos2 -= 1
         pos1 += 1
         
-"""def insertionSort (lst, lessfunction): 
-    size =  lt.size(lst) 
-    pos1 = 1
-    while pos1 <= size:
-        pos2 = pos1
-        while (pos2 >1) and (lessfunction (lt.getElement(lst, pos2),lt.getElement(lst, pos2-1))):
-            lt.exchange (lst, pos2, pos2-1)
-            pos2 -= 1
-        pos1 += 1"""
+
