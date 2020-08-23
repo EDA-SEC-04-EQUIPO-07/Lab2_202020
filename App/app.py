@@ -37,7 +37,7 @@ from DataStructures import liststructure as lt
 from Sorting import insertionsort as ins
 from Sorting import selectionsort as sel
 from Sorting import shellsort as she
-from LAB2 import test_insertionsortmovies as tes1
+from Test import test_insertionsortmovies as tes1
 
 from time import process_time 
 
