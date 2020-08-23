@@ -32,12 +32,12 @@ import csv
 from ADT import list as lt
 from DataStructures import listiterator as it
 from DataStructures import liststructure as lt
-from Sorting import insertionsort as ins
-from Sorting import selectionsort as sel
-from Sorting import shellsort as she
 
 from time import process_time 
 
+from Sorting import insertionsort as ins
+from Sorting import selectionsort as sel
+from Sorting import shellsort as she
 
 def loadCSVFile (file, sep=";"):
     """
@@ -53,7 +53,7 @@ def loadCSVFile (file, sep=";"):
     Returns: None  
     """
     #lst = lt.newList("ARRAY_LIST") #Usando implementacion arraylist
-    lst = lt.newList() #Usando implementacion linkedlist
+    lst = lt.newList("ARRAY_LIST") #Usando implementacion linkedlist
     print("Cargando archivo ....")
     t1_start = process_time() #tiempo inicial
     dialect = csv.excel()
@@ -66,8 +66,19 @@ def loadCSVFile (file, sep=";"):
     except:
         print("Hubo un error con la carga del archivo")
     t1_stop = process_time() #tiempo final
-    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
+    print("Tiempo de ejecución ",(t1_stop-t1_start)," segundos")
     return lst
+
+
+def less(element1, element2, criteria):
+    if float(element1[criteria]) < float(element2[criteria]):
+        return True
+    return False
+
+def greater (element1,element2, criteria):
+    if float(element1[criteria]) > float(element2[criteria]):
+        return True
+    return False
 
 
 def printMenu():
@@ -135,17 +146,6 @@ def countElementsByCriteria(criteria, lst1,lst2):
     
     return (lst,lst["size"],promedio)
 
-def less(element1, element2, criteria):
-    if float(element1[criteria]) < float(element2[criteria]):
-        return True
-    return False
-
-def greater (element1,element2, criteria):
-    if float(element1[criteria]) > float(element2[criteria]):
-        return True
-    return False
-   
-   
 def orderElementsByCriteria(function, column, lst, elements):
     """
     Retorna una lista con cierta cantidad de elementos ordenados por el criterio
@@ -168,7 +168,6 @@ def orderElementsByCriteria(function, column, lst, elements):
 def main():
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
-
     Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
     Args: None
     Return: None 
