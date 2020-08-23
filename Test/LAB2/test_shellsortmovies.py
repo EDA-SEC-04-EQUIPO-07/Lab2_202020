@@ -22,17 +22,16 @@
 
 import pytest
 import config as cf
-from Sorting import selectionsort as sort
+from Sorting import shellsort as sort
 from DataStructures import listiterator as it
 from ADT import list as lt
 import csv
 
-#list_type = 'ARRAY_LIST'
-list_type = 'SINGLE_LINKED'
+list_type = 'ARRAY_LIST'
+#list_type = 'SINGLE_LINKED'
 
 lst_movies = lt.newList(list_type)
 moviesfile = cf.data_dir + 'SmallMoviesDetailsCleaned.csv'
-
 
 def setUp():
     print('Loading movies')
@@ -71,14 +70,14 @@ def test_sort():
     Lista con elementos en orden aleatorio
     """
     print("sorting ....")
-    sort.selectionSort(lst_movies, less)
+    sort.shellSort(lst_movies, less)
 
 def test_loading_CSV_y_ordenamiento():
     """
     Prueba que se pueda leer el archivo y que despues de relizar el sort, el orden este correcto
     """
     setUp()
-    sort.selectionSort(lst_movies,less)
+    sort.shellSort(lst_movies,less)
     while not (lt.isEmpty(lst_movies)):
         x = int(lt.removeLast(lst_movies)['id'])
         if not (lt.isEmpty(lst_movies)):
@@ -86,4 +85,3 @@ def test_loading_CSV_y_ordenamiento():
         else:
             break
         assert x > y
-

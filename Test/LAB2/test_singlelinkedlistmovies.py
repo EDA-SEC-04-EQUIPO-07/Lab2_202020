@@ -1,36 +1,10 @@
-"""
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
- *
- * Desarrolado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
- *
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- """
-
-import pytest 
-import config 
-from DataStructures import arraylist as slt
-
+import pytest
+import csv
+from DataStructures import singlelinkedlist as slt
 
 def cmpfunction (element1, element2):
-    if element1["id"] == element2["id"]:
+    if element1 == element2:
         return 0
-    elif element1["id"] < element2["id"]:
-        return -1
-    else:
-        return 1
 
 @pytest.fixture
 def lst ():
@@ -54,11 +28,9 @@ def lstmovies(movies):
         slt.addLast(lst,movies[i])    
     return lst
 
-
 def test_empty (lst):
     assert slt.isEmpty(lst) == True
     assert slt.size(lst) == 0
-
 
 def test_addFirst (lst, movies):
     assert slt.isEmpty(lst) == True
@@ -69,8 +41,6 @@ def test_addFirst (lst, movies):
     assert slt.size(lst) == 2
     movie = slt.firstElement(lst)
     assert movie == movies[2]
-
-
 
 def test_addLast (lst, movies):
     assert slt.isEmpty(lst) == True
@@ -84,11 +54,9 @@ def test_addLast (lst, movies):
     movie = slt.lastElement(lst)
     assert movie == movies[2]
 
-
-
 def test_getElement(lstmovies, movies):
     movie = slt.getElement(lstmovies, 1)
-    assert movie == movies[0]
+    assert book == movies[0]
     movie = slt.getElement(lstmovies, 5)
     assert movie == movies[4]
 
@@ -126,7 +94,6 @@ def test_insertElement (lst, movies):
 
 def test_isPresent (lstmovies, movies):
     movie = {'id': '8', 'actor1_name': 'none', 'actor1_gender': '0', 'actor2_name': 'none', 'actor2_gender': '0','actor3_name': 'none', 'actor3_gender': '0', 'actor4_name': 'none', 'actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '0', 'director_name': 'Timo Novotny', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Timo Novotny', 'producer_number': '2', 'screeplay_name': 'Michael Glawogger', 'editor_name': 'Timo Novotny'}
-    print(slt.isPresent (lstmovies, movies[2]))
     assert slt.isPresent (lstmovies, movies[2]) > 0
     assert slt.isPresent (lstmovies, movie) == 0
     
@@ -148,8 +115,8 @@ def test_changeInfo (lstmovies):
     assert movie10 == movie
 
 def test_exchange (lstmovies, movies):
-    movies1 = slt.getElement(lstmovies, 1)
-    movies5 = slt.getElement(lstmovies, 5)
+    movie1 = slt.getElement(lstmovies, 1)
+    movie5 = slt.getElement(lstmovies, 5)
     slt.exchange (lstmovies, 1, 5)
-    assert slt.getElement(lstmovies, 1) == movies5
-    assert slt.getElement(lstmovies, 5) == movies1
+    assert slt.getElement(lstmovies, 1) == movie5
+    assert slt.getElement(lstmovies, 5) == movie1

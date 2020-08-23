@@ -31,8 +31,7 @@ import csv
 list_type = 'SINGLE_LINKED'
 
 lst_movies = lt.newList(list_type)
-moviesfile = cf.data_dir + 'SmallMoviesDetailsCleaned.csv'
-
+moviesfile = cf.data_dir + 'AllMoviesDetailsCleaned.csv'
 
 def setUp():
     print('Loading movies')
@@ -62,7 +61,7 @@ def printList(lst):
         print(element['id'])
 
 def less(element1, element2):
-    if int(element1['id']) < int(element2['id']):
+    if int(element1['\ufeffid']) < int(element2['\ufeffid']):
         return True
     return False
 
@@ -86,4 +85,3 @@ def test_loading_CSV_y_ordenamiento():
         else:
             break
         assert x > y
-

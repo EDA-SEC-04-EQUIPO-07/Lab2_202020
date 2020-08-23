@@ -40,10 +40,10 @@ book7 = {'book_id': '7', 'book_title': 'Title 7', 'author': 'author 7'}
 book8 = {'book_id': '8', 'book_title': 'Title 8', 'author': 'author 8'}
 book9 = {'book_id': '9', 'book_title': 'Title 9', 'author': 'author 9'}
 book10 = {'book_id': '10', 'book_title': 'Title 10', 'author': 'author 10'}
-book11 = {'book_id': '7', 'book_title': 'Title 11', 'author': 'author 11'}
-book12 = {'book_id': '8', 'book_title': 'Title 12', 'author': 'author 12'}
-book13 = {'book_id': '9', 'book_title': 'Title 13', 'author': 'author 13'}
-book14 = {'book_id': '10', 'book_title': 'Title 14', 'author': 'author 14'}
+book11 = {'book_id': '8', 'book_title': 'Title 11', 'author': 'author 11'}
+book12 = {'book_id': '9', 'book_title': 'Title 12', 'author': 'author 12'}
+book13 = {'book_id': '10', 'book_title': 'Title 13', 'author': 'author 13'}
+book14 = {'book_id': '11', 'book_title': 'Title 14', 'author': 'author 14'}
 
 lista_ordenada_correcta = [
     book1, book2, book3, book4, book5, book6, book7, book8, book9, book10
@@ -222,7 +222,7 @@ def test_ManyElements():
     assert slt.removeFirst(lst) == book13 
     assert slt.removeFirst(lst) == book9
     assert slt.removeFirst(lst) == book10
-    assert slt.removeFirst(lst) != book14
+    assert slt.removeFirst(lst) == book14
     # variantes
     # assert slt.removeFirst(lst)["book_id"] == book10["book_id"]
     # assert slt.removeFirst(lst)["book_id"] == book14["book_id"]
