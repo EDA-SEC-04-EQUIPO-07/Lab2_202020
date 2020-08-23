@@ -19,18 +19,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+"""
+  Estructura que contiene la información a guardar en una lista encadenada
+"""
 
-import config as cf
-from ADT import list as lt
+def newSingleNode (element):
+  """
+  Estructura que contiene la información a guardar en una lista encadenada
+  """
+  node = {'info':element,'next':None}
+  return (node)
 
-def insertionSort (lst, lessfunction, criteria): 
-    size =  lt.size(lst) 
-    pos1 = 1
-    while pos1 <= size:
-        pos2 = pos1
-        while (pos2 >1) and (lessfunction (lt.getElement(lst, pos2),lt.getElement(lst, pos2-1),criteria)):
-            lt.exchange (lst, pos2, pos2-1)
-            pos2 -= 1
-        pos1 += 1
-        
+
+
+def getElement (node):
+  """
+  Retorna la información de un nodo
+  Args:
+    node: El nodo a examinar
+  Returns:
+    La información almacenada en el nodo
+  """
+  return node ['info']
+
 
