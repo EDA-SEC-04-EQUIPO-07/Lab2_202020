@@ -1,7 +1,6 @@
 import pytest
 import csv
-from DataStructures import listiterator as it
-from DataStructures import liststructure as lt
+from DataStructures import singlelinkedlist as slt
 
 def cmpfunction (element1, element2):
     if element1 == element2:
@@ -11,7 +10,6 @@ def cmpfunction (element1, element2):
 def lst ():
     lst = slt.newList(cmpfunction)
     return lst
-
 
 @pytest.fixture
 def movies ():
@@ -23,7 +21,6 @@ def movies ():
     movies.append({'id': '5', 'actor1_name': 'none', 'actor1_gender': '0', 'actor2_name': 'none', 'actor2_gender': '0', 'actor3_name': 'none', 'actor3_gender': '0', 'actor4_name': 'none', 'actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '0', 'director_name': 'Timo Novotny', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Timo Novotny', 'producer_number': '2', 'screeplay_name': 'Michael Glawogger', 'editor_name': 'Timo Novotny'})
     return movies
 
-
 @pytest.fixture
 def lstmovies(movies):
     lst = slt.newList(cmpfunction)
@@ -31,11 +28,9 @@ def lstmovies(movies):
         slt.addLast(lst,movies[i])    
     return lst
 
-
 def test_empty (lst):
     assert slt.isEmpty(lst) == True
     assert slt.size(lst) == 0
-
 
 def test_addFirst (lst, movies):
     assert slt.isEmpty(lst) == True
@@ -46,7 +41,6 @@ def test_addFirst (lst, movies):
     assert slt.size(lst) == 2
     movie = slt.firstElement(lst)
     assert movie == movies[2]
-
 
 def test_addLast (lst, movies):
     assert slt.isEmpty(lst) == True
@@ -60,13 +54,11 @@ def test_addLast (lst, movies):
     movie = slt.lastElement(lst)
     assert movie == movies[2]
 
-
 def test_getElement(lstmovies, movies):
     movie = slt.getElement(lstmovies, 1)
     assert book == movies[0]
     movie = slt.getElement(lstmovies, 5)
     assert movie == movies[4]
-
 
 
 def test_removeFirst (lstmovies, movies):
@@ -77,14 +69,12 @@ def test_removeFirst (lstmovies, movies):
     assert movie  == movies[1]
 
 
-
 def test_removeLast (lstmovies, movies):
     assert slt.size(lstmovies) == 5
     slt.removeLast(lstmovies)
     assert slt.size(lstmovies) == 4
     movie = slt.getElement(lstmovies, 4)
     assert movie  == movies[3]
-
 
 
 def test_insertElement (lst, movies):
@@ -102,12 +92,10 @@ def test_insertElement (lst, movies):
     assert movie == movies[0]
 
 
-
 def test_isPresent (lstmovies, movies):
     movie = {'id': '8', 'actor1_name': 'none', 'actor1_gender': '0', 'actor2_name': 'none', 'actor2_gender': '0','actor3_name': 'none', 'actor3_gender': '0', 'actor4_name': 'none', 'actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '0', 'director_name': 'Timo Novotny', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Timo Novotny', 'producer_number': '2', 'screeplay_name': 'Michael Glawogger', 'editor_name': 'Timo Novotny'}
     assert slt.isPresent (lstmovies, movies[2]) > 0
     assert slt.isPresent (lstmovies, movie) == 0
-    
 
 
 def test_deleteElement (lstmovies, movies):
@@ -120,17 +108,16 @@ def test_deleteElement (lstmovies, movies):
     movie = slt.getElement(lstmovies, pos)
     assert movie == movies[3]
 
-
 def test_changeInfo (lstmovies):
     movie10 = {'id': '8', 'actor1_name': 'none', 'actor1_gender': '0', 'actor2_name': 'none', 'actor2_gender': '0','actor3_name': 'none', 'actor3_gender': '0', 'actor4_name': 'none', 'actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '0', 'director_name': 'Timo Novotny', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Timo Novotny', 'producer_number': '2', 'screeplay_name': 'Michael Glawogger', 'editor_name': 'Timo Novotny'}
     slt.changeInfo (lstmovies, 1, movie10)
     movie = slt.getElement(lstmovies, 1)
     assert movie10 == movie
 
-
 def test_exchange (lstmovies, movies):
-    book1 = slt.getElement(lstmovies, 1)
-    book5 = slt.getElement(lstmovies, 5)
+    movie1 = slt.getElement(lstmovies, 1)
+    movie5 = slt.getElement(lstmovies, 5)
     slt.exchange (lstmovies, 1, 5)
-    assert slt.getElement(lstmovies, 1) == book5
-    assert slt.getElement(lstmovies, 5) == book1
+    assert slt.getElement(lstmovies, 1) == movie5
+    assert slt.getElement(lstmovies, 5) == movie1
+

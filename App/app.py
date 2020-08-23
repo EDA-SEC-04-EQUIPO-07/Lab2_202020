@@ -220,7 +220,7 @@ def main():
                     tamaño =input("Ingrese cuantas posiciones quiere que tenga su lista\n")
                     lista=orderElementsByCriteria(crecimiento,criteria,lista_details,tamaño)
                     print ("La lista de peliculas solicitada es:",lista)
-            elif int(inputs[0])==0: #opcion 0, salir
+            elif int(inputs[0])==0: #opcion 0 , salir
                 sys.exit(0)
                 
 if __name__ == "__main__":

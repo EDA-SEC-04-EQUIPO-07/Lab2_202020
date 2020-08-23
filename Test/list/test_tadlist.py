@@ -29,9 +29,9 @@ from ADT import list as lt
 
 
 def cmpfunction (element1, element2):
-    if element1['book_id'] == element2['book_id']:
+    if element1['id'] == element2['id']:
         return 0
-    elif element1['book_id'] < element2['book_id']:
+    elif element1['id'] < element2['id']:
         return -1
     else:
         return 1
@@ -45,23 +45,23 @@ def lst ():
 
 
 @pytest.fixture
-def books ():
-    books = []
-    books.append({'book_id':'1', 'book_title':'Title 1', 'author':'author 1'})
-    books.append({'book_id':'2', 'book_title':'Title 2', 'author':'author 2'})
-    books.append({'book_id':'3', 'book_title':'Title 3', 'author':'author 3'})
-    books.append({'book_id':'4', 'book_title':'Title 4', 'author':'author 4'})
-    books.append({'book_id':'5', 'book_title':'Title 5', 'author':'author 5'})
-    print (books[0])
-    return books
+def movies ():
+    movies = []
+    movies.append({'id': '1', 'actor1_name': 'Turo Pajala', 'actor1_gender': '0', 'actor2_name': 'Susanna Haavisto', 'actor2_gender': '0', 'actor3_name': 'Matti Pellonpää', 'actor3_gender': '2', 'actor4_name': 'Eetu Hilkamo','actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '4', 'director_name': 'Aki Kaurismäki', 'director_gender': '0', 'director_number': '1', 'producer_name': 'none', 'producer_number': '0', 'screeplay_name': 'Aki Kaurismäki', 'editor_name': 'Raija Talvio'})
+    movies.append({'id': '2', 'actor1_name': 'Matti Pellonpää', 'actor1_gender': '2', 'actor2_name': 'Kati Outinen', 'actor2_gender': '1', 'actor3_name': 'Sakari Kuosmanen', 'actor3_gender': '2', 'actor4_name': 'Esko Nikkari', 'actor4_gender': '2', 'actor5_name': 'Kylli Köngäs', 'actor5_gender': '0', 'actor_number': '7', 'director_name': 'Aki Kaurismäki', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Mika Kaurismäki', 'producer_number': '1', 'screeplay_name': 'Aki Kaurismäki', 'editor_name': 'Raija Talvio'})
+    movies.append({'id': '3', 'actor1_name': 'Tim Roth', 'actor1_gender': '2', 'actor2_name': 'Antonio Banderas', 'actor2_gender': '2', 'actor3_name': 'Jennifer Beals', 'actor3_gender': '1', 'actor4_name': 'Madonna', 'actor4_gender': '1', 'actor5_name': 'Marisa Tomei', 'actor5_gender': '1', 'actor_number': '24', 'director_name': 'Allison Anders', 'director_gender': '1', 'director_number': '4', 'producer_name': 'Lawrence Bender', 'producer_number': '1', 'screeplay_name': 'none', 'editor_name': 'Margaret Goodspeed'})
+    movies.append({'id': '4', 'actor1_name': 'Emilio Estevez', 'actor1_gender': '2', 'actor2_name': 'Cuba Gooding Jr.', 'actor2_gender': '2', 'actor3_name': 'Denis Leary', 'actor3_gender': '2', 'actor4_name': 'Jeremy Piven', 'actor4_gender': '2', 'actor5_name': 'Peter Greene', 'actor5_gender': '2', 'actor_number': '15', 'director_name': 'Stephen Hopkins', 'director_gender': '2', 'director_number': '1', 'producer_name': 'Gene Levy', 'producer_number': '1', 'screeplay_name': 'Lewis Colick', 'editor_name': 'Tim Wellburn'})
+    movies.append({'id': '5', 'actor1_name': 'none', 'actor1_gender': '0', 'actor2_name': 'none', 'actor2_gender': '0', 'actor3_name': 'none', 'actor3_gender': '0', 'actor4_name': 'none', 'actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '0', 'director_name': 'Timo Novotny', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Timo Novotny', 'producer_number': '2', 'screeplay_name': 'Michael Glawogger', 'editor_name': 'Timo Novotny'})
+    print (movies[0])
+    return movies
 
 
 @pytest.fixture
-def lstbooks(books):
+def lstbooks(movies):
     lst = lt.newList('ARRAY_LIST', cmpfunction)
     # lst = lt.newList('SINGLE_LINKED', cmpfunction)
     for i in range(0,5):    
-        lt.addLast(lst,books[i])    
+        lt.addLast(lst,movies[i])    
     return lst
 
 
@@ -72,106 +72,107 @@ def test_empty (lst):
 
 
 
-def test_addFirst (lst, books):
+def test_addFirst (lst, movies):
     assert lt.isEmpty(lst) == True
     assert lt.size(lst) == 0
-    lt.addFirst (lst, books[1])
+    lt.addFirst (lst, movies[1])
     assert lt.size(lst) == 1
-    lt.addFirst (lst, books[2])
+    lt.addFirst (lst, movies[2])
     assert lt.size(lst) == 2
-    book = lt.firstElement(lst)
-    assert book == books[2]
+    movie = lt.firstElement(lst)
+    assert movie == movies[2]
 
 
 
 
-def test_addLast (lst, books):
+def test_addLast (lst, movies):
     assert lt.isEmpty(lst) == True
     assert lt.size(lst) == 0
-    lt.addLast (lst, books[1])
+    lt.addLast (lst, movies[1])
     assert lt.size(lst) == 1
-    lt.addLast (lst, books[2])
+    lt.addLast (lst, movies[2])
     assert lt.size(lst) == 2
-    book = lt.firstElement(lst)
-    assert book == books[1]
-    book = lt.lastElement(lst)
-    assert book == books[2]
+    movie = lt.firstElement(lst)
+    assert movie == movies[1]
+    movie = lt.lastElement(lst)
+    assert movie == movies[2]
 
 
 
 
-def test_getElement(lstbooks, books):
-    book = lt.getElement(lstbooks, 1)
-    assert book == books[0]
-    book = lt.getElement(lstbooks, 5)
-    assert book == books[4]
+def test_getElement(lstmovies, movies):
+    movie = lt.getElement(lstmovies, 1)
+    assert movie == movies[0]
+    movie = lt.getElement(lstmovies, 5)
+    assert movie == movies[4]
 
 
 
 
-def test_removeFirst (lstbooks, books):
-    assert lt.size(lstbooks) == 5
-    lt.removeFirst(lstbooks)
-    assert lt.size(lstbooks) == 4
-    book = lt.getElement(lstbooks, 1)
-    assert book  == books[1]
+
+def test_removeFirst (lstmovies, movies):
+    assert lt.size(lstmovies) == 5
+    lt.removeFirst(lstmovies)
+    assert lt.size(lstmovies) == 4
+    movie = lt.getElement(lstmovies, 1)
+    assert movie  == movies[1]
 
 
 
-def test_removeLast (lstbooks, books):
-    assert lt.size(lstbooks) == 5
-    lt.removeLast(lstbooks)
-    assert lt.size(lstbooks) == 4
-    book = lt.getElement(lstbooks, 4)
-    assert book  == books[3]
+def test_removeLast (lstmovies, movies):
+    assert lt.size(lstmovies) == 5
+    lt.removeLast(lstmovies)
+    assert lt.size(lstmovies) == 4
+    movie = lt.getElement(lstmovies, 4)
+    assert movie  == movies[3]
 
 
 
-def test_insertElement (lst, books):
+def test_insertElement (lst, movies):
     assert lt.isEmpty(lst) is True
     assert lt.size(lst) == 0
-    lt.insertElement (lst, books[0], 1)
+    lt.insertElement (lst, movies[0], 1)
     assert lt.size(lst) == 1
-    lt.insertElement (lst, books[1], 2)
+    lt.insertElement (lst, movies[1], 2)
     assert lt.size(lst) == 2
-    lt.insertElement (lst, books[2], 1)
+    lt.insertElement (lst, movies[2], 1)
     assert lt.size(lst) == 3
-    book = lt.getElement(lst, 1)
-    assert book == books[2]
-    book = lt.getElement(lst, 2)
-    assert book == books[0]
+    movie = lt.getElement(lst, 1)
+    assert movie == movies[2]
+    movie = lt.getElement(lst, 2)
+    assert movie == movies[0]
 
 
 
-def test_isPresent (lstbooks, books):
-    book = {'book_id':'10', 'book_title':'Title 10', 'author':'author 10'}
-    assert lt.isPresent (lstbooks, books[2]) > 0
-    assert lt.isPresent (lstbooks, book) == 0
+def test_isPresent (lstmovies, movies):
+    movie = {'id': '8', 'actor1_name': 'none', 'actor1_gender': '0', 'actor2_name': 'none', 'actor2_gender': '0','actor3_name': 'none', 'actor3_gender': '0', 'actor4_name': 'none', 'actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '0', 'director_name': 'Timo Novotny', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Timo Novotny', 'producer_number': '2', 'screeplay_name': 'Michael Glawogger', 'editor_name': 'Timo Novotny'}
+    assert lt.isPresent (lstmovies, movies[2]) > 0
+    assert lt.isPresent (lstmovies, movie) == 0
     
 
 
-def test_deleteElement (lstbooks, books):
-    pos = lt.isPresent (lstbooks, books[2])
+def test_deleteElement (lstmovies, movies):
+    pos = lt.isPresent (lstmovies, movies[2])
     assert pos > 0
-    book = lt.getElement(lstbooks, pos)
-    assert book == books[2]
-    lt.deleteElement (lstbooks, pos)
-    assert lt.size(lstbooks) == 4
-    book = lt.getElement(lstbooks, pos)
-    assert book == books[3]
+    movie = lt.getElement(lstmovies, pos)
+    assert movie == movies[2]
+    lt.deleteElement (lstmovies, pos)
+    assert lt.size(lstmovies) == 4
+    movie = lt.getElement(lstmovies, pos)
+    assert movie == movies[3]
 
 
 
-def test_changeInfo (lstbooks):
-    book10 = {'book_id':'10', 'book_title':'Title 10', 'author':'author 10'}
-    lt.changeInfo (lstbooks, 1, book10)
-    book = lt.getElement(lstbooks, 1)
-    assert book10 == book
+def test_changeInfo (lstmovies):
+    movie10 = {'id': '8', 'actor1_name': 'none', 'actor1_gender': '0', 'actor2_name': 'none', 'actor2_gender': '0','actor3_name': 'none', 'actor3_gender': '0', 'actor4_name': 'none', 'actor4_gender': '0', 'actor5_name': 'none', 'actor5_gender': '0', 'actor_number': '0', 'director_name': 'Timo Novotny', 'director_gender': '0', 'director_number': '1', 'producer_name': 'Timo Novotny', 'producer_number': '2', 'screeplay_name': 'Michael Glawogger', 'editor_name': 'Timo Novotny'}
+    lt.changeInfo (lstmovies, 1, movie10)
+    movie = lt.getElement(lstmovies, 1)
+    assert movie10 == movie
 
 
-def test_exchange (lstbooks, books):
-    book1 = lt.getElement(lstbooks, 1)
-    book5 = lt.getElement(lstbooks, 5)
-    lt.exchange (lstbooks, 1, 5)
-    assert lt.getElement(lstbooks, 1) == book5
-    assert lt.getElement(lstbooks, 5) == book1
+def test_exchange (lstmovies, movies):
+    movie1 = lt.getElement(lstmovies, 1)
+    movie5 = lt.getElement(lstmovies, 5)
+    lt.exchange (lstmovies, 1, 5)
+    assert lt.getElement(lstmovies, 1) == movie5
+    assert lt.getElement(lstmovies, 5) == movie1
