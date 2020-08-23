@@ -32,12 +32,9 @@ import csv
 from ADT import list as lt
 from DataStructures import listiterator as it
 from DataStructures import liststructure as lt
-
-#MARTIN
 from Sorting import insertionsort as ins
 from Sorting import selectionsort as sel
 from Sorting import shellsort as she
-from Test import test_insertionsortmovies as tes1
 
 from time import process_time 
 
@@ -118,7 +115,6 @@ def countElementsByCriteria(criteria, lst1,lst2):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    listiña=[]
     lst = lt.newList()
     promedio=0
     ids=[]
@@ -139,18 +135,34 @@ def countElementsByCriteria(criteria, lst1,lst2):
     
     return (lst,lst["size"],promedio)
 
-#MARTIN
+def less(element1, element2, criteria):
+    if float(element1[criteria]) < float(element2[criteria]):
+        return True
+    return False
+
+def greater (element1,element2, criteria):
+    if float(element1[criteria]) > float(element2[criteria]):
+        return True
+    return False
+   
+   
 def orderElementsByCriteria(function, column, lst, elements):
     """
     Retorna una lista con cierta cantidad de elementos ordenados por el criterio
     """
+    if column == "1":
+        column="vote_count"
+    elif column == "2":
+        column="vote_average"
+    else:
+        print("Valor no valido para criterio de busqueda")
     lista=[]
     if function.lower()=="crecimiento":
-        ins.insertionSort(lst,tes1.greater,column)
+        ins.insertionSort(lst,greater,column)
     elif function.lower()=="decrecimiento":
-        ins.insertionSort(lst,tes1.less,column)
-    for i in range(0,elements):
-        lista.append(lt.lst[i]["original_title"])
+        ins.insertionSort(lst,less,column)
+    for i in range(0,int(elements)):
+        lista.append(lt.getElement(lst, i)["original_title"])
     return lista
 
 def main():
@@ -198,15 +210,16 @@ def main():
                     lista,counter,promedio=countElementsByCriteria(criteria,lista_casting,lista_details)
                     print("Las peliculas dirigidas por " + criteria +  " son "+ str(lista))
                     print ("Hay "+str(counter)+" películas buenas de ese director. Y "+str(promedio)+" es su promedio de la votacion.") 
-            #MARTIN
             elif int(inputs[0])==5: #opcion 5
-                if lista==None or lista['size']==0: #obtener la longitud de la lista
-                    print("La lista esta vacía")
+                if lista_details==None or lista_details['size']==0: #obtener la longitud de la lista
+                    print("La lista details esta vacía")  
+                elif lista_casting==None or lista_casting['size']==0: #obtener la longitud de la lista
+                    print("La lista casting esta vacía")
                 else:
-                    criteria =input('Ingrese el criterio de búsqueda (COUNT o AVERAGE)\n')
+                    criteria =input('Ingrese 1 si el criterio de busqueda es COUNT o ingrese 2 si es AVERAGE\n')
                     crecimiento =input("¿Quiere la lista en crecimiento o decrecimiento?\n")
-                    tamaño =input("¿Qué tan grande quiere su lista?\n")
-                    lista=orderElementsByCriteria(crecimiento,criteria,lista,tamaño)
+                    tamaño =input("Ingrese cuantas posiciones quiere que tenga su lista\n")
+                    lista=orderElementsByCriteria(crecimiento,criteria,lista_details,tamaño)
                     print ("La lista de peliculas solicitada es:",lista)
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
