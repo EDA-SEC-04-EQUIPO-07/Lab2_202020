@@ -6,9 +6,9 @@ from DataStructures import arraylist as slt
 
 
 def cmpfunction (element1, element2):
-    if element1["book_id"] == element2["book_id"]:
+    if element1["id"] == element2["id"]:
         return 0
-    elif element1["book_id"] < element2["book_id"]:
+    elif element1["id"] < element2["id"]:
         return -1
     else:
         return 1
