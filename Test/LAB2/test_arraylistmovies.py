@@ -142,8 +142,8 @@ def test_changeInfo (lstmovies):
 
 
 def test_exchange (lstmovies, movies):
-    book1 = slt.getElement(lstmovies, 1)
-    book5 = slt.getElement(lstmovies, 5)
+    movie1 = slt.getElement(lstmovies, 1)
+    movie5 = slt.getElement(lstmovies, 5)
     slt.exchange (lstmovies, 1, 5)
-    assert slt.getElement(lstmovies, 1) == book5
-    assert slt.getElement(lstmovies, 5) == book1
+    assert slt.getElement(lstmovies, 1) == movie5
+    assert slt.getElement(lstmovies, 5) == movie1
