@@ -35,9 +35,6 @@ from DataStructures import liststructure as lt
 
 from time import process_time 
 
-from Sorting import insertionsort as ins
-from Sorting import selectionsort as sel
-from Sorting import shellsort as she
 
 def loadCSVFile (file, sep=";"):
     """
@@ -53,7 +50,7 @@ def loadCSVFile (file, sep=";"):
     Returns: None  
     """
     #lst = lt.newList("ARRAY_LIST") #Usando implementacion arraylist
-    lst = lt.newList("ARRAY_LIST") #Usando implementacion linkedlist
+    lst = lt.newList() #Usando implementacion linkedlist
     print("Cargando archivo ....")
     t1_start = process_time() #tiempo inicial
     dialect = csv.excel()
@@ -80,6 +77,17 @@ def greater (element1,element2, criteria):
         return True
     return False
 
+def selectionSort (lst, lessfunction, criteria,size): 
+    pos1 = 1
+    while pos1 < size:
+        minimum = pos1              # minimun tiene el menor elemento conocido hasta ese momento
+        pos2 = pos1 + 1
+        while (pos2 <= lt.size(lst)):
+            if (lessfunction (lt.getElement(lst, pos2),lt.getElement(lst, minimum),criteria)): 
+                minimum = pos2      # minimum se actualiza con la posición del nuevo elemento más pequeño
+            pos2 += 1
+        lt.exchange (lst, pos1, minimum)  # se intercambia el elemento más pequeño hasta ese punto con el elemento en pos1
+        pos1 += 1
 
 def printMenu():
     """
@@ -158,10 +166,10 @@ def orderElementsByCriteria(function, column, lst, elements):
         print("Valor no valido para criterio de busqueda")
     lista=[]
     if function.lower()=="crecimiento":
-        ins.insertionSort(lst,greater,column)
+        lista_ord=selectionSort(lst,greater,column, int(elements))
     elif function.lower()=="decrecimiento":
-        ins.insertionSort(lst,less,column)
-    for i in range(0,int(elements)):
+        lista_ord=selectionSort(lst,less,column, int(elements))
+    for i in range(1,(int(elements)+1)):
         lista.append(lt.getElement(lst, i)["original_title"])
     return lista
 
@@ -220,7 +228,7 @@ def main():
                     tamaño =input("Ingrese cuantas posiciones quiere que tenga su lista\n")
                     lista=orderElementsByCriteria(crecimiento,criteria,lista_details,tamaño)
                     print ("La lista de peliculas solicitada es:",lista)
-            elif int(inputs[0])==0: #opcion 0 , salir
+            elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
                 
 if __name__ == "__main__":
