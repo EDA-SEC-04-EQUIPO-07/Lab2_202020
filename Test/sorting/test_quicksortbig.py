@@ -31,7 +31,7 @@ import csv
 list_type = 'SINGLE_LINKED'
 
 lst_movies = lt.newList(list_type)
- moviesfile = cf.data_dir + 'SmallMoviesDetailsCleaned.csv'
+moviesfile = cf.data_dir + 'SmallMoviesDetailsCleaned.csv'
 
 
 def setUp():
