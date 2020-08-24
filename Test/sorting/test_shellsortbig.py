@@ -78,7 +78,7 @@ def test_loading_CSV_y_ordenamiento():
     """
     setUp()
     sort.shellSort(lst_movies,less)
-  while not (lt.isEmpty(lst_movies)):
+    while not (lt.isEmpty(lst_movies)):
         x = int(lt.removeLast(lst_movies)['id'])
         if not (lt.isEmpty(lst_movies)):
             y = int(lt.lastElement(lst_movies)['id'])
