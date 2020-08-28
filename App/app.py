@@ -213,7 +213,6 @@ def main():
                     print("La lista casting esta vacía")
                 else:
                     criteria =input('Ingrese el nombre del director\n')
-                    print(countElementsByCriteria(criteria,lista_casting,lista_details))
                     lista,counter,promedio=countElementsByCriteria(criteria,lista_casting,lista_details)
                     print("Las peliculas dirigidas por " + criteria +  " son "+ str(lista))
                     print ("Hay "+str(counter)+" películas buenas de ese director. Y "+str(promedio)+" es su promedio de la votacion.") 
